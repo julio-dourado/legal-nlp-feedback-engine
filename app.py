@@ -74,10 +74,10 @@ with tab_cls:
 
         st.subheader("A predição está correta?")
         ok, wrong = st.columns(2)
-        if ok.button("👍 Correta", use_container_width=True):
+        if ok.button("👍 Correta", width="stretch"):
             db.log_feedback(last["id"], True)
             st.success("Feedback registrado — obrigado!")
-        with wrong.popover("👎 Incorreta", use_container_width=True):
+        with wrong.popover("👎 Incorreta", width="stretch"):
             options = [l for l in clf.labels if l != pred.label]
             corrected = st.radio("Rótulo correto", options, format_func=lambda l: LABEL_PT.get(l, l))
             comment = st.text_input("Comentário (opcional)")
@@ -116,7 +116,7 @@ with tab_obs:
                     x=alt.X("confiança:Q", bin=alt.Bin(extent=[0, 1], step=0.1)), y="fração:Q", color="fonte:N",
                     xOffset="fonte:N",
                 ),
-                use_container_width=True,
+                width="stretch",
             )
         with right:
             st.markdown("**Latência por requisição (ms)**")
@@ -130,7 +130,7 @@ with tab_obs:
 with tab_data:
     export = db.training_export()
     st.markdown(f"**{len(export)} exemplos validados por humanos** prontos para o próximo fine-tuning.")
-    st.dataframe(db.frame().drop(columns=["scores"]), use_container_width=True, hide_index=True)
+    st.dataframe(db.frame().drop(columns=["scores"]), width="stretch", hide_index=True)
     st.download_button(
         "Baixar dataset de re-treino (JSONL)",
         export.to_json(orient="records", lines=True, force_ascii=False),

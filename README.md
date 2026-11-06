@@ -12,6 +12,7 @@ short_description: Human-in-the-loop + observabilidade para NLP jurídico PT-BR
 
 # ⚖️ Legal NLP Feedback Engine
 
+[![ci](https://github.com/julio-dourado/legal-nlp-feedback-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/julio-dourado/legal-nlp-feedback-engine/actions/workflows/ci.yml)
 [![Model](https://img.shields.io/badge/🤗%20model-bertimbau--legal--judgment--ptbr-yellow)](https://huggingface.co/juliodourado1/bertimbau-legal-judgment-ptbr)
 [![Demo](https://img.shields.io/badge/🤗%20demo-Spaces-blue)](https://huggingface.co/spaces/juliodourado1/legal-nlp-feedback-engine)
 
