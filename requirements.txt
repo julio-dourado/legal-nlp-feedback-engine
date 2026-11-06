@@ -1,5 +1,9 @@
---extra-index-url https://download.pytorch.org/whl/cpu
-torch>=2.4
+# CPU-only torch on Linux x86_64 / Python 3.12 (Streamlit Cloud, CI, Docker).
+# A direct wheel URL instead of --extra-index-url: with an extra index, uv (used by
+# Streamlit Cloud) resolves certifi/requests/urllib3 from the PyTorch index and
+# installs 2022 versions, which can break HTTPS downloads from the Hugging Face Hub.
+torch @ https://download.pytorch.org/whl/cpu/torch-2.15.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl ; sys_platform == "linux" and platform_machine == "x86_64" and python_version == "3.12"
+torch>=2.4 ; sys_platform != "linux" or platform_machine != "x86_64" or python_version != "3.12"
 transformers>=4.46
 huggingface_hub>=0.26
 fastapi>=0.115
