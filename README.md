@@ -1,20 +1,8 @@
----
-title: Legal NLP Feedback Engine
-emoji: ⚖️
-colorFrom: red
-colorTo: gray
-sdk: docker
-app_port: 7860
-pinned: true
-license: mit
-short_description: Human-in-the-loop + observabilidade para NLP jurídico PT-BR
----
-
 # ⚖️ Legal NLP Feedback Engine
 
 [![ci](https://github.com/julio-dourado/legal-nlp-feedback-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/julio-dourado/legal-nlp-feedback-engine/actions/workflows/ci.yml)
 [![Model](https://img.shields.io/badge/🤗%20model-bertimbau--legal--judgment--ptbr-yellow)](https://huggingface.co/juliodourado1/bertimbau-legal-judgment-ptbr)
-[![Demo](https://img.shields.io/badge/🤗%20demo-Spaces-blue)](https://huggingface.co/spaces/juliodourado1/legal-nlp-feedback-engine)
+[![Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://legal-nlp-feedback-engine.streamlit.app)
 
 Um modelo em produção precisa de mais do que `model.predict()`. Este projeto mostra **o ciclo completo de
 um classificador de NLP jurídico em português**: servir o modelo, registrar cada predição, coletar a
@@ -80,7 +68,7 @@ pytest -q                                   # testes (não baixam o modelo)
 uvicorn api:app --reload                    # API → http://localhost:8000/docs
 streamlit run app.py                        # dashboard → http://localhost:8501
 
-# ou com Docker (mesma imagem do HF Space)
+# ou com Docker
 docker build -t legal-nlp-feedback-engine . && docker run -p 7860:7860 legal-nlp-feedback-engine
 ```
 
@@ -112,7 +100,7 @@ tests/             testes da API e das métricas com classificador falso
 ## Limitações
 
 * SQLite atende a demo; em produção a troca natural é PostgreSQL (o `Store` isola o acesso).
-* No HF Space o banco é efêmero e reinicia junto com o container.
+* Na demo online o banco é efêmero e reinicia junto com o app.
 * O modelo prevê o desfecho a partir de ementas do TJAL; não é aconselhamento jurídico e não foi validado em outros tribunais.
 
 ---
